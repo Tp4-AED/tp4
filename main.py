@@ -42,13 +42,23 @@ def mostrarVector(vec):
     for pub in vec:
         write(pub)
 
+def ordenarPorCodigo(vec):
+    n = len(vec)
+    for i in range(n-1):
+        for j in range(i+1, n):
+            if vec[i].codigo > vec[j].codigo:
+                vec[i], vec[j] = vec[j], vec[i]
+
+    return vec
+
 def test():
     ban = False
     op = 0
     while op != 6:
         n = validarMayorQue(0)
         vec = crearVector(n)
-        mostrarVector(vec)
+        sorted = ordenarPorCodigo(vec)
+        mostrarVector(sorted)
         print()
         TGREEN =  '\033[32m' # TEXTO VERDE
         ENDC = '\033[m' # TEXTO DEFAULT
