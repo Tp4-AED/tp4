@@ -92,7 +92,7 @@ def binarySearch(vec, x):
     return -1
     #842091,6
 
-#belu
+#belu-----------------------------------------------------------------------------------------------------
 def buscador_cod(v):
     cod = False
     reg = None
@@ -119,7 +119,7 @@ def buscador_cod(v):
         print("el codigo ingresado no existe")
 
     return reg
-
+------------------------------------------------------------------------------------------------------------------
 
 def test():
     FD = 'miscompras.dat'
@@ -143,10 +143,11 @@ def test():
             else:
                 grabarVector(vec, reg, FD)
                 leerArchivo(FD)
-            #belu
+            #belu------------------------
             reg = buscador_cod(vec)
             cargar_archivo(reg)
             mostrar_archivo()
+            -------------------------------
         if op == 2:
             pass
         if op == 3:
