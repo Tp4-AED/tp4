@@ -60,7 +60,6 @@ def validarConfirmacion(msj, min, max):
         conf = int(input("Ingrese una opcion valida: "))
     return conf
 
-#feli
 def binarySearch(vec, x):
     ban = False
     n = len(vec)
@@ -92,34 +91,6 @@ def binarySearch(vec, x):
     return -1
     #842091,6
 
-#belu-----------------------------------------------------------------------------------------------------
-def buscador_cod(v):
-    cod = False
-    reg = None
-    busqueda_codigo = int(input("ingrese el codigo de la publicacion a buscar: "))
-    for i in range(len(v)):
-        if v[i].codigo == busqueda_codigo:
-            cod = True
-            cant = int(input("ingrese la cantidad a comprar: "))
-            if cant < v[i].cantidad:
-                print("si hay disponibilidad, compra confirmada")
-                v[i].cantidad = v[i].cantidad - cant
-                envio = int(input("1-(desea envio a domicilio) o 2-(retirar por sucursal)"))
-                precio = v[i].precio * cant
-                if envio == 1:
-                    monto_total = round(10 * precio / 100, 2) + precio
-                else:
-                    monto_total = precio
-
-                reg = Compra(v[i].codigo, cant, precio, envio, monto_total)
-
-            else:
-                print("no hay disponibilidad, compra rechazada")
-    if not cod:
-        print("el codigo ingresado no existe")
-
-    return reg
-#------------------------------------------------------------------------------------------------------------------
 
 def test():
     FD = 'miscompras.dat'
@@ -143,11 +114,7 @@ def test():
             else:
                 grabarVector(vec, reg, FD)
                 leerArchivo(FD)
-            #belu------------------------
-            reg = buscador_cod(vec)
-            cargar_archivo(reg)
-            mostrar_archivo()
-            #-------------------------------
+            
         if op == 2:
             pass
         if op == 3:
