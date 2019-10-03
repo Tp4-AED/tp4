@@ -1,4 +1,4 @@
-#------------------------codigo Feli-----------------------------------------
+
 import random
 from registros import *
 from archivos import *
@@ -52,7 +52,7 @@ def ordenarPorCodigo(vec):
                 vec[i], vec[j] = vec[j], vec[i]
 
     return vec
-
+#--------------------funciones punto 1----------------------------------------------------------------------------------
 def validarConfirmacion(msj, min, max):
     conf = int(input(msj))
     while conf < min or conf > max:
@@ -90,8 +90,32 @@ def binarySearch(vec, x):
             izq = c + 1
     return -1
     #842091,6
-
-
+    
+#-------------------------------------------funciones punto 3-----------------------------------------------------------
+def rango(vec):
+    pmin = validarMayorQue(0, "ingrese el precio minimo que quiere gastar: ")
+    pmax = validarMayorQue(0, "ingrese el precio maximo que quiere gastar: ")
+    public_menor = pmax
+    public_mayor = pmin
+    b_publicacion = False
+    print("las publicaciones que se encuentran dentro de ese intervalo son:")
+    for i in range(len(vec)):
+        if vec[i].precio > pmin:
+            if vec[i].precio < pmax:
+                b_publicacion = True
+                write(vec[i])
+                #busco la publicacion con mayor precio y la con menor precio
+                if vec[i].precio < public_menor:
+                    public_menor = vec[i].precio
+                if vec[i].precio > public_mayor:
+                    public_mayor = vec[i].precio
+    if not b_publicacion:
+        print("no se han encontrado publicaciones en ese rango")
+    if b_publicacion:
+        print()
+        print("la publicacion con el menor precio es:", public_menor)
+        print("la publicacion con el mayor precio es:", public_mayor)
+------------------------------------------------------------------------------------------------------------------------
 def test():
     FD = 'miscompras.dat'
     #ban = False
@@ -112,7 +136,7 @@ def test():
             if reg == -1:
                 print("Publicacion no encontrada")
             else:
-                grabarVector(vec, reg, FD)
+                grabarVector(reg, FD)
                 leerArchivo(FD)
             
         if op == 2:
