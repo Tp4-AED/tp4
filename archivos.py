@@ -1,8 +1,7 @@
-#-----------------------------codigo Feli-------------------------------------
+
 import os.path
-import io
 import pickle
-from main import *
+
 
 class Compra:
     def __init__(self, codigo, Ccomprada, precio, tipo, montoF, fecha):
@@ -34,51 +33,8 @@ def leerArchivo(FD):
         display(pub)
     m.close()
 
-def grabarVector(v, reg, arch):
+def grabarVector(reg, arch):
     m = open(arch, 'wb')
     pickle.dump(reg, m)
     m.close()
 
-#-----------------------------------------------------------------------------
-#codigo belu
-import pickle
-import os.path
-
-class Compra:
-    def __init__(self, codigo, cantidad, precio, envio, monto):
-        self.codigo = codigo
-        self.cantidad = cantidad
-        self.precio = precio
-        self.envio = envio
-        self.monto = monto
-
-def display(reg):
-    print("codigo", reg.codigo, end=" ")
-    print("-cantidad", reg.cantidad, end=" ")
-    print("-precio", reg.precio, end=" ")
-    print("-tipo de envio", reg.envio, end=" ")
-    print("-monto total", reg.monto)
-
-def cargar_archivo(reg):
-    fd = "miscompras.dat"
-    if reg == None:
-        print("no hay datos para cargarle al archivo")
-        return
-    m = open(fd, "wb")
-    pickle.dump(reg, m)
-    print("se ha cargado el archivo con exito")
-    m.close()
-
-def mostrar_archivo():
-    fd = "miscompras.dat"
-    if not os.path.exists(fd):
-        print("el archivo no existe")
-        return
-
-    m = open(fd, "rb")
-    t = os.path.getsize(fd)
-    while m.tell() < t:
-        reg = pickle.load(m)
-        display(reg)
-    m.close()
-    #-----------------------------------------------------------------------------------------------------------------
