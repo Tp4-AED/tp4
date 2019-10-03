@@ -115,7 +115,7 @@ def rango(vec):
         print()
         print("la publicacion con el menor precio es:", public_menor)
         print("la publicacion con el mayor precio es:", public_mayor)
-------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------
 def test():
     FD = 'miscompras.dat'
     #ban = False
@@ -142,7 +142,7 @@ def test():
         if op == 2:
             pass
         if op == 3:
-            pass
+           rango(vec)
         if op == 4:
             pass
         if op == 5:
