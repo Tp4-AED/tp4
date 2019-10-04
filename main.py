@@ -81,7 +81,7 @@ def binarySearch(vec, x):
                     codig = vec[c].codigo
                     precio = round(vec[c].precio * cant, 2)
                     final = round(precio + (precio*0.10), 2)
-                    fecha = hoy.strftime('%Y/%m/%d')
+                    fecha = date.today()
                     compra = Compra(codig, cant, precio, entrega, final, fecha)
             return compra
         elif x < vec[c].codigo:
