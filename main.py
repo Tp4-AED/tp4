@@ -1,7 +1,7 @@
 import random
 from registros import *
 from archivos import *
-import time
+from datetime import *
 
 def menu():
     print("1- Comprar")
@@ -60,6 +60,7 @@ def validarConfirmacion(msj, min, max):
     return conf
 
 def binarySearch(vec, x):
+    hoy = date.today()
     ban = False
     n = len(vec)
     izq, der = 0, n-1
@@ -80,7 +81,7 @@ def binarySearch(vec, x):
                     codig = vec[c].codigo
                     precio = round(vec[c].precio * cant, 2)
                     final = round(precio + (precio*0.10), 2)
-                    fecha = time.strftime('%Y/%m/%d')
+                    fecha = hoy.strftime('%Y/%m/%d')
                     compra = Compra(codig, cant, precio, entrega, final, fecha)
             return compra
         elif x < vec[c].codigo:
