@@ -60,7 +60,6 @@ def validarConfirmacion(msj, min, max):
     return conf
 
 def binarySearch(vec, x):
-    hoy = date.today()
     ban = False
     n = len(vec)
     izq, der = 0, n-1
