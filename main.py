@@ -167,7 +167,9 @@ def test():
                 generarArchivoTexto(reg)
                 leerArchivo(FD)
         if op == 2:
-            pass
+            f1 = int(input("ingrese la primera fecha mas vieja:(formato aaaa/mm/dd)"))
+            f2 = int(input("ingrese la segunda fecha mas nueva:(formato aaaa/mm/dd)"))
+            mostrar_archivo_fechas(FD, f1, f2)
         if op == 3:
            rango(vec)
         if op == 4:
