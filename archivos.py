@@ -1,6 +1,7 @@
 import os.path
 import io
 import pickle
+import time
 from main import *
 
 class Compra:
@@ -20,7 +21,7 @@ def display(compra):
     renglon += "Precio: "'{:<20}'.format(compra.precio)
     renglon += "Tipo de envio: "'{:<10}'.format(compra.tipo)
     renglon += "Monto total abonado: "'{:<20}'.format(compra.montoF)
-    renglon += "Fecha: "'{:<10}'.format(compra.fecha)
+    renglon += "Fecha: "'{:<10}'.format(time.strftime('%Y/%m/%d'))
     print(renglon)
 
 def leerArchivo(FD):
