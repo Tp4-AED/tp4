@@ -1,4 +1,3 @@
-
 import random
 from registros import *
 from archivos import *
@@ -89,8 +88,7 @@ def binarySearch(vec, x):
         else:
             izq = c + 1
     return -1
-    #842091,6
-    
+
 #-------------------------------------------funciones punto 3-----------------------------------------------------------
 def rango(vec):
     pmin = validarMayorQue(0, "ingrese el precio minimo que quiere gastar: ")
@@ -115,8 +113,29 @@ def rango(vec):
         print()
         print("la publicacion con el menor precio es:", public_menor)
         print("la publicacion con el mayor precio es:", public_mayor)
-#------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+#-------------------------------------------funciones punto 4-----------------------------------------------------------
+def agregarFavoritos(vec, x, vf):
+    n = len(vec)
+    pos = n
+    izq, der = 0, n-1
+    while izq <= der:
+        c = (izq+der)//2
+        if x == vec[c].codigo:
+            pos = c
+            break
+        if x < vec[c].codigo:
+            der = c - 1
+        else:
+            izq = c + 1
+    if izq > der:
+        pos = izq
+    vf[pos:pos] = [vec[c]]
+    return vf
+#-----------------------------------------------------------------------------------------------------------------------
+
 def test():
+    vf = []
     FD = 'miscompras.dat'
     #ban = False
     n = validarMayorQue(0, "Ingrese la cantidad de publicaciones a buscar: ")
@@ -127,24 +146,26 @@ def test():
     while op != 6:
         TGREEN =  '\033[32m' # TEXTO VERDE
         ENDC = '\033[m' # TEXTO DEFAULT
+        print()
         print(TGREEN + "Sitio de compra/venta 2.0 " + ENDC)
         menu()
         op = validarEntre(1, 6, "Ingrese una opcion: ")
         if op == 1:
-            cod = validarMayorQue(0, "Ingrese un codigo a buscar: ")
+            cod = validarMayorQue(0, "Ingrese el codigo de la publicacion a buscar: ")
             reg = binarySearch(sorted, cod)
             if reg == -1:
                 print("Publicacion no encontrada")
             else:
                 grabarVector(reg, FD)
                 leerArchivo(FD)
-            
         if op == 2:
             pass
         if op == 3:
            rango(vec)
         if op == 4:
-            pass
+            x = validarMayorQue(0, "Ingrese el codigo de la publicacion a buscar: ")
+            vf = agregarFavoritos(sorted, x, vf)
+            mostrarVector(vf)
         if op == 5:
             pass
         if op == 6:
