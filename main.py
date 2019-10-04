@@ -78,9 +78,9 @@ def binarySearch(vec, x):
                     print("Stock actualizado del producto: {0} ".format(vec[c].cantidad))
                     entrega = validarConfirmacion("¿Como desea que se realize la entrega(1: por envio, 2: retiro en sucursal)", 1, 2)
                     codig = vec[c].codigo
-                    precio = vec[c].precio * cant
+                    precio = round(vec[c].precio * cant, 2)
                     final = round(precio + (precio*0.10), 2)
-                    fecha = time.strftime('%Y%m%d')
+                    fecha = time.strftime('%Y/%m/%d')
                     compra = Compra(codig, cant, precio, entrega, final, fecha)
             return compra
         elif x < vec[c].codigo:
@@ -114,6 +114,7 @@ def rango(vec):
         print("la publicacion con el menor precio es:", public_menor)
         print("la publicacion con el mayor precio es:", public_mayor)
 #-----------------------------------------------------------------------------------------------------------------------
+
 #-------------------------------------------funciones punto 4-----------------------------------------------------------
 def agregarFavoritos(vec, x, vf):
     n = len(vec)
@@ -122,8 +123,13 @@ def agregarFavoritos(vec, x, vf):
     while izq <= der:
         c = (izq+der)//2
         if x == vec[c].codigo:
+            #for fav in vf:
+            #    if fav.codigo != x:
             pos = c
             break
+            #    else:
+            #        print("Ya existe una publicacion con ese codigo en favoritos")
+            #        return
         if x < vec[c].codigo:
             der = c - 1
         else:
@@ -132,10 +138,11 @@ def agregarFavoritos(vec, x, vf):
         pos = izq
     vf[pos:pos] = [vec[c]]
     return vf
+
 #-----------------------------------------------------------------------------------------------------------------------
 
 def test():
-    vf = []
+    vf = [ ]
     FD = 'miscompras.dat'
     #ban = False
     n = validarMayorQue(0, "Ingrese la cantidad de publicaciones a buscar: ")
@@ -157,6 +164,7 @@ def test():
                 print("Publicacion no encontrada")
             else:
                 grabarVector(reg, FD)
+                generarArchivoTexto(reg)
                 leerArchivo(FD)
         if op == 2:
             pass
@@ -165,7 +173,8 @@ def test():
         if op == 4:
             x = validarMayorQue(0, "Ingrese el codigo de la publicacion a buscar: ")
             vf = agregarFavoritos(sorted, x, vf)
-            mostrarVector(vf)
+            if vf is not None:
+                mostrarVector(vf)
         if op == 5:
             pass
         if op == 6:
@@ -176,3 +185,4 @@ if __name__ == "__main__":
     test()
 
 #----------------------------------------------------------------------------
+
