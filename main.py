@@ -117,27 +117,33 @@ def rango(vec):
 
 #-------------------------------------------funciones punto 4-----------------------------------------------------------
 def agregarFavoritos(vec, x, vf):
+    ban = False
     n = len(vec)
     pos = n
     izq, der = 0, n-1
     while izq <= der:
         c = (izq+der)//2
         if x == vec[c].codigo:
-            #for fav in vf:
-            #    if fav.codigo != x:
+            ban = True
+            if len(vf) is not None:
+                for i in range(len(vf)):
+                    if x == vf[i].codigo:
+                        print("Ya existe una publicacion con ese codigo")
+                        return vf
             pos = c
             break
-            #    else:
-            #        print("Ya existe una publicacion con ese codigo en favoritos")
-            #        return
         if x < vec[c].codigo:
             der = c - 1
         else:
             izq = c + 1
-    if izq > der:
-        pos = izq
-    vf[pos:pos] = [vec[c]]
-    return vf
+    if ban == False:
+        print("Publicacion no encontrada")
+        return vf
+    else:
+        if izq > der:
+            pos = izq
+        vf[pos:pos] = [vec[c]]
+        return vf
 
 #-----------------------------------------------------------------------------------------------------------------------
 
