@@ -21,7 +21,7 @@ def display(compra):
     renglon += "Precio: "'{:<20}'.format(compra.precio)
     renglon += "Tipo de envio: "'{:<10}'.format(compra.tipo)
     renglon += "Monto total abonado: "'{:<20}'.format(compra.montoF)
-    renglon += "Fecha: "'{:<10}'.format(time.strftime('%Y/%m/%d'))
+    renglon += "Fecha: "'{:<10}'.format(str(compra.fecha))
     print(renglon)
 
 def leerArchivo(FD):
