@@ -50,14 +50,18 @@ def generarArchivoTexto(reg):
     m.write('\nTu pago: ${}'.format(round(((reg.precio * reg.Ccomprada)*0.10) + reg.precio * reg.Ccomprada), 2))
     
     #punto 2
-    def mostrar_archivo_fechas(FD, f1, f2):
+def mostrar_archivo_fechas(FD, y1, m1, d1, y2, m2, d2):
+    import datetime
     if not os.path.exists(FD):
         print("El archivo no existe")
     m = open(FD, 'rb')
+    f1 = datetime.date(y1, m1, d1)
+    f2 = datetime.date(y2, m2, d2)
     size = os.path.getsize(FD)
     while m.tell() < size:
         pub = pickle.load(m)
-        if pub.fecha > f1:
-            if pub.fecha < f2:
+        if pub.fecha >= f1:
+            if pub.fecha <= f2:
                 display(pub)
+
 
