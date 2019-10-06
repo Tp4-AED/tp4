@@ -175,9 +175,7 @@ def test():
         if op == 2:
             y1, m1, d1 = [int(x) for x in input("ingrese la primera fecha(aaaammdd) : ").split('/')]
             y2, m2, d2 = [int(x) for x in input("ingrese la segunda fecha(aaaammdd) : ").split('/')]
-            f1 = y1, m1, d1
-            f2 = y2, m2, d2
-            mostrar_archivo_fechas(FD, f1, f2)
+            mostrar_archivo_fechas(FD, y1, m1, d1, y2, m2, d2)
         if op == 3:
            rango(vec)
         if op == 4:
