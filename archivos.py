@@ -64,4 +64,12 @@ def mostrar_archivo_fechas(FD, y1, m1, d1, y2, m2, d2):
             if pub.fecha <= f2:
                 display(pub)
 
+#punto 5
+def crearFavoritos(vf):
+    if not os.path.exists('favoritos.dat'):
+        print("El archivo no existe")
+    m = open('favoritos.dat', 'ab')
+    for fav in vf:
+            pickle.dump(fav, m)
+    m.close()
 
