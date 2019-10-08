@@ -69,9 +69,19 @@ def crearFavoritos(vf):
     if not os.path.exists('favoritos.dat'):
         print("El archivo no existe")
     m = open('favoritos.dat', 'ab')
+    n = open('favoritos.dat', 'rb')
+    size = os.path.getsize('favoritos.dat')
     for fav in vf:
+        if size > 0:
+            while n.tell() < size:
+                campo = pickle.load(n)
+            if fav.codigo == campo.codigo:
+                print("La publicacion ya esta en el archivo de favoritos")
+                return False
+        else:
             pickle.dump(fav, m)
     m.close()
+    return
 
     
 def leerArchivoFav(FD):
