@@ -148,6 +148,7 @@ def agregarFavoritos(vec, x, vf):
 #-----------------------------------------------------------------------------------------------------------------------
 
 def test():
+    banarc = False
     vf = [ ]
     FD = 'miscompras.dat'
     #ban = False
@@ -173,18 +174,31 @@ def test():
                 generarArchivoTexto(reg)
                 leerArchivo(FD)
         if op == 2:
-            y1, m1, d1 = [int(x) for x in input("ingrese la primera fecha(aaaammdd) : ").split('/')]
-            y2, m2, d2 = [int(x) for x in input("ingrese la segunda fecha(aaaammdd) : ").split('/')]
-            mostrar_archivo_fechas(FD, y1, m1, d1, y2, m2, d2)
+            if banarc == True:
+                y1, m1, d1 = [int(x) for x in input("ingrese la primera fecha(aaaammdd) : ").split('/')]
+                y2, m2, d2 = [int(x) for x in input("ingrese la segunda fecha(aaaammdd) : ").split('/')]
+                mostrar_archivo_fechas(FD, y1, m1, d1, y2, m2, d2)
+            else:
+                print("Archivo no creado")
         if op == 3:
-           rango(vec)
+           if banarc == True:
+                rango(vec)
+            else:
+                print("Archivo no creado")
         if op == 4:
             x = validarMayorQue(0, "Ingrese el codigo de la publicacion a buscar: ")
             vf = agregarFavoritos(sorted, x, vf)
             if vf is not None:
                 mostrarVector(vf)
         if op == 5:
-            pass
+            if len(vf) == 0:
+                print("El vector favoritos esta vacio")
+            else:
+                favs = crearFavoritos(vf)
+                if favs == False:
+                    pass
+                else:
+                    leerArchivoFav('favoritos.dat')
         if op == 6:
             pass
 
