@@ -73,3 +73,13 @@ def crearFavoritos(vf):
             pickle.dump(fav, m)
     m.close()
 
+    
+def leerArchivoFav(FD):
+    if not os.path.exists(FD):
+        print("El archivo no existe")
+    m = open(FD, 'rb')
+    size = os.path.getsize(FD)
+    while m.tell() < size:
+        fav = pickle.load(m)
+        write(fav)
+    m.close()
