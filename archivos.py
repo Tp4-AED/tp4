@@ -75,13 +75,15 @@ def crearFavoritos(vf):
         if size > 0:
             while n.tell() < size:
                 campo = pickle.load(n)
-            if fav.codigo == campo.codigo:
-                print("La publicacion ya esta en el archivo de favoritos")
-                return False
+                if fav.codigo == campo.codigo:
+                    print("La publicacion ya esta en el archivo de favoritos")
+                    return False
+            pickle.dump(fav, m)
         else:
             pickle.dump(fav, m)
     m.close()
     return
+
 
     
 def leerArchivoFav(FD):
