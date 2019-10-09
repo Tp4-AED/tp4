@@ -113,7 +113,7 @@ def rango(vec):
         print()
         print("la publicacion con el menor precio es:", public_menor)
         print("la publicacion con el mayor precio es:", public_mayor)
-#-----------------------------------------------------------------------------------------------------------------------
+
 
 #-------------------------------------------funciones punto 4-----------------------------------------------------------
 def agregarFavoritos(vec, x, vf):
@@ -199,9 +199,7 @@ def test():
                     pass
                 else:
                     leerArchivoFav('favoritos.dat')
-        if op == 6:
-            pass
-
+       
 
 if __name__ == "__main__":
     test()
