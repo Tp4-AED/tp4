@@ -82,6 +82,8 @@ def binarySearch(vec, x):
                     final = round(precio + (precio*0.10), 2)
                     fecha = date.today()
                     compra = Compra(codig, cant, precio, entrega, final, fecha)
+            else:
+                return 2
             return compra
         elif x < vec[c].codigo:
             der = c - 1
@@ -169,6 +171,8 @@ def test():
             reg = binarySearch(sorted, cod)
             if reg == -1:
                 print("Publicacion no encontrada")
+            elif reg == 2:
+                pass
             else:
                 grabarVector(reg, FD)
                 generarArchivoTexto(reg)
