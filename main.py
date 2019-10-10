@@ -92,29 +92,28 @@ def binarySearch(vec, x):
     return -1
 
 #-------------------------------------------funciones punto 3-----------------------------------------------------------
-def rango(vec):
-    pmin = validarMayorQue(0, "ingrese el precio minimo que quiere gastar: ")
-    pmax = validarMayorQue(0, "ingrese el precio maximo que quiere gastar: ")
-    public_menor = pmax
-    public_mayor = pmin
-    b_publicacion = False
-    print("las publicaciones que se encuentran dentro de ese intervalo son:")
-    for i in range(len(vec)):
-        if vec[i].precio > pmin:
-            if vec[i].precio < pmax:
-                b_publicacion = True
-                write(vec[i])
-                #busco la publicacion con mayor precio y la con menor precio
-                if vec[i].precio < public_menor:
-                    public_menor = vec[i].precio
-                if vec[i].precio > public_mayor:
-                    public_mayor = vec[i].precio
-    if not b_publicacion:
-        print("no se han encontrado publicaciones en ese rango")
-    if b_publicacion:
-        print()
-        print("la publicacion con el menor precio es:", public_menor)
-        print("la publicacion con el mayor precio es:", public_mayor)
+def rango_precios(v):
+    b = False
+    for i in range(len(v)):
+        if not b:
+            pmin = v[i].precio
+            pmax = 0
+        b = True
+        if v[i].precio < pmin:
+            pmin = v[i].precio
+        if v[i].precio > pmax:
+            pmax = v[i].precio
+    print()
+    print("El mayor precio que se encontro es de: $", pmax)
+    print("El mayor precio que se encontro es de: $", pmin)
+    print("Ingrese los precios dentro de ese rango")
+    print()
+    min = validarEntre(pmin, pmax, "Ingrese el precio minimo que quiere gastar: ")
+    max = validarEntre(pmin, pmax, "Ingrese el precio maximo que quiere gastar: ")
+    for j in range(len(v)):
+        if v[j].precio > min:
+            if v[j].precio < max:
+                write(v[j])
 
 
 #-------------------------------------------funciones punto 4-----------------------------------------------------------
@@ -192,7 +191,7 @@ def test():
                 print("Archivo no creado")
         if op == 3:
            if os.path.exists(FD):
-                rango(vec)
+                rango_precios(vec)
             else:
                 print("Archivo no creado")
         if op == 4:
