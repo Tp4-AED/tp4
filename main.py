@@ -178,14 +178,20 @@ def test():
                 generarArchivoTexto(reg)
                 leerArchivo(FD)
         if op == 2:
-            if banarc == True:
-                y1, m1, d1 = [int(x) for x in input("ingrese la primera fecha(aaaammdd) : ").split('/')]
-                y2, m2, d2 = [int(x) for x in input("ingrese la segunda fecha(aaaammdd) : ").split('/')]
+            if os.path.exists(FD):
+                y1= validarMayorQue(0, "ingrese el año de la primera fecha: ")
+                m1= validarEntre(1, 12, "ingrese el mes de la primera fecha: ")
+                d1= validarEntre(1, 31, "ingrese el dia de la primera fecha: ")
+
+                y2= validarMayorQue(0, "ingrese el año de la segunda fecha: ")
+                m2= validarEntre(1, 12, "ingrese el mes de la segunda fecha: ")
+                d2= validarEntre(1, 31, "ingrese el dia de la segunda fecha: ")
+
                 mostrar_archivo_fechas(FD, y1, m1, d1, y2, m2, d2)
             else:
                 print("Archivo no creado")
         if op == 3:
-           if banarc == True:
+           if os.path.exists(FD):
                 rango(vec)
             else:
                 print("Archivo no creado")
