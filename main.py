@@ -35,7 +35,8 @@ def crearVector(n):
         estado = random.randint(0, 1)
         cantidad = random.randint(0, 1000)
         puntuacion = random.randint(1, 5)
-        publicacion = Publicacion(codigo, precio, ubicacion, estado, cantidad, puntuacion)
+        favorito = False
+        publicacion = Publicacion(codigo, precio, ubicacion, estado, cantidad, puntuacion, favorito)
         vec[i] = publicacion
     return vec
 
@@ -203,11 +204,8 @@ def test():
             if len(vf) == 0:
                 print("El vector favoritos esta vacio")
             else:
-                favs = crearFavoritos(vf)
-                if favs == False:
-                    pass
-                else:
-                    leerArchivoFav('favoritos.dat')
+                crearFavoritos(vf, FD2)
+                leerArchivoFav('favoritos.dat')
        
 
 if __name__ == "__main__":
