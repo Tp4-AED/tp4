@@ -14,13 +14,17 @@ class Compra:
         self.fecha = fecha
 
 def display(compra):
-    print("-" * 165)
+    tipos = "envio a domicilio", "Retiro en sucursal"
+    print("-" * 180)
     renglon = ""
     renglon += "Codigo: "'{:<10}'.format(compra.codigo)
-    renglon += "Cantidad comprada: ""$" '{:<10}'.format(compra.Ccomprada)
+    renglon += "Cantidad comprada: " '{:<10}'.format(compra.Ccomprada)
     renglon += "Precio: "'{:<20}'.format(compra.precio)
-    renglon += "Tipo de envio: "'{:<10}'.format(compra.tipo)
-    renglon += "Monto total abonado: "'{:<20}'.format(compra.montoF)
+    renglon += "Tipo de envio: "'{:<25}'.format(tipos[compra.tipo-1])
+    if compra.tipo == 1:
+        renglon += "Monto total abonado: "'{:<20}'.format(round(compra.montoF, 2))
+    else:
+        renglon += "Monto total abonado: "'{:<20}'.format(round(compra.precio*compra.Ccomprada, 2))
     renglon += "Fecha: "'{:<10}'.format(str(compra.fecha))
     print(renglon)
 
@@ -43,11 +47,15 @@ def grabarVector(reg, arch):
 def generarArchivoTexto(reg):
     m = open('miscompras.txt', 'at')
     m.write('\n-----------------------------------------------')
-    m.write('\nCompra: {} - {} '.format(reg.codigo, reg.fecha))
+    m.write('\nCompra: #{} - {} '.format(reg.codigo, reg.fecha))
     m.write('\nResumen de compra:')
     m.write('\nProducto: ${} ({} x ${})'.format(round(reg.precio, 2)* reg.Ccomprada, reg.Ccomprada, round(reg.precio, 2)))
-    m.write('\nCargo de envio: ${}'.format(round(((reg.precio * reg.Ccomprada)*0.10), 2)))
-    m.write('\nTu pago: ${}'.format(round(((reg.precio * reg.Ccomprada)*0.10) + reg.precio * reg.Ccomprada), 2))
+    if reg.tipo == 1:
+        m.write('\nCargo de envio: ${}'.format(round(((reg.precio * reg.Ccomprada)*0.10), 2)))
+        m.write('\nTu pago: ${}'.format(round(((reg.precio * reg.Ccomprada)*0.10) + reg.precio * reg.Ccomprada), 2))
+    else:
+        m.write('\nNo hay cargo de envio')
+        m.write('\nTu pago: ${}'.format(round((reg.precio * reg.Ccomprada), 2)))
     
     #punto 2
 def mostrar_archivo_fechas(FD, y1, m1, d1, y2, m2, d2):
@@ -65,26 +73,6 @@ def mostrar_archivo_fechas(FD, y1, m1, d1, y2, m2, d2):
                 display(pub)
 
 #punto 5
-def crearFavoritos(vf):
-    if not os.path.exists('favoritos.dat'):
-        print("El archivo no existe")
-    m = open('favoritos.dat', 'ab')
-    n = open('favoritos.dat', 'rb')
-    size = os.path.getsize('favoritos.dat')
-    for fav in vf:
-        if size > 0:
-            while n.tell() < size:
-                campo = pickle.load(n)
-                if fav.codigo == campo.codigo:
-                    print("La publicacion ya esta en el archivo de favoritos")
-                    return False
-            pickle.dump(fav, m)
-        else:
-            pickle.dump(fav, m)
-    m.close()
-    return
-
-#punto 5 alternativo
 def crearFavoritos(vf, arch):
     if not os.path.exists(arch):
         print("El archivo no existe")
