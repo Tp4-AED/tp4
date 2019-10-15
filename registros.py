@@ -1,12 +1,13 @@
 #registros
 class Publicacion:
-    def __init__(self, codigo, precio, ubicacion, estado, cantidad, puntuacion):
+    def __init__(self, codigo, precio, ubicacion, estado, cantidad, puntuacion, favorito):
         self.codigo = codigo
         self.precio = precio
         self.ubicacion = ubicacion
         self.estado = estado
         self.cantidad = cantidad
         self. puntuacion = puntuacion
+        self.favorito = favorito
 
 def write(publicacion):
     ubicaciones = "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén"\
