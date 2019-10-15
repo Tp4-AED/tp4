@@ -85,29 +85,36 @@ def crearFavoritos(vf):
     return
 
 #punto 5 alternativo
-def crearFavoritos(vf):
-    nr = []
-    if not os.path.exists('favoritos.dat'):
+def crearFavoritos(vf, arch):
+    if not os.path.exists(arch):
         print("El archivo no existe")
         print("Archivo creado y actualizado")
-        m = open('favoritos.dat', 'wb')
-        n = open('favoritos.dat', 'rb')
-        for fav in vf:
-            pickle.dump(fav, m)
+        m = open(arch, 'wb')
+        for i in range(len(vf)):
+            pickle.dump(vf[i], m)
+            vf[i].favorito = True
         m.close()
     else:
-        m = open('favoritos.dat', 'ab')
-        n = open('favoritos.dat', 'rb')
+        nr = []
+        m = open(arch, 'rb')
         size = os.path.getsize('favoritos.dat')
-        while n.tell() < size:
-            regarch = pickle.load(n)
+        pubn = False
+        while m.tell() < size:
+            regarch = pickle.load(m)
             for i in range(len(vf)):
-                if vf[i].codigo != regarch:
+                if regarch != vf[i] and vf[i].favorito == False:
+                    vf[i].favorito = True
+                    pubn = True
                     nr.append(vf[i])
-        #for i in range(len(nr)):
-        #    pickle.dump(nr[i], m)
-        m.close()
-        return nr
+        if pubn:
+            f = open(arch, "ab")
+            for a in range(len(nr)):
+                pickle.dump(nr[a], f)
+            f.close()
+            print("Archivo Actualizado")
+        else:
+            print("No se agrego ningun registro")
+        return
 
 
 
